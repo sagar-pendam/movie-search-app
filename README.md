@@ -36,7 +36,7 @@ API_KEY=your_rapidapi_key
 
 ## 📦 Setup
 Clone the repository:
-git clone https://github.com/your-username/movie-search-app.git
+git clone https://github.com/sagar-pendam/movie-search-app.git
 cd movie-search-app
 
 Install dependencies:
@@ -99,8 +99,9 @@ React Hook Form: For seamless form handling.
 
 
 
-🎥 Live Demo
-Check out the live version of the app here: Movie Search App Live Demo
+🎥 Live Demo  
+Explore the Movie Search App live: [Movie Search App Live Demo](https://movie-app-bd3c5.web.app)  
+Search for movies, manage your favorites, and enjoy a responsive design!
 
 
 ## 📸 Screenshots
