@@ -106,7 +106,7 @@ Check out the live version of the app here: Movie Search App Live Demo
 ## 📸 Screenshots
 
 ### 🔍 Home Page
-![Home](./screenshots/homepage.jpg)
+![Home](./screenshots/hompage.jpg)
 
 ### 🎬 Movie Results
 ![Search Results](./screenshots/searchedresult.jpg)
