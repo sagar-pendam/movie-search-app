@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .custom-shadow {
+      background-color: #ffa53a;
+      box-shadow: 4px 4px 20px #ffa53a;
+  
+    }
+  }
+  
