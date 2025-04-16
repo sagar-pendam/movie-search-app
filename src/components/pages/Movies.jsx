@@ -10,6 +10,7 @@ import { X } from 'lucide-react';
 import { ChevronUp } from 'lucide-react';
 import MoviesSkeleton from "../skeleton/MoviesSkeleton"
 import axios from 'axios';
+import { toast } from "react-toastify";
 function Movies() {
     const [showButton, setShowButton] = useState(false);
     const [loading, setloading] = useState(false)
@@ -356,6 +357,11 @@ function Movies() {
                 }
 
             } catch (error) {
+                if (error.response?.status === 429) {
+                    toast.error("API limit reached. Please wait.");
+                  } else {
+                    toast.error("Something went wrong.");
+                  }
                 console.error(error);
             }
         }

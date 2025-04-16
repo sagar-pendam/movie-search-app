@@ -22,6 +22,7 @@ import MovieContext from './context/MovieContext';
 import Footer from './components/Footer';
 import "react-toastify/dist/ReactToastify.css";
 import ScrollToTop from './components/ScrollToTop';
+import ProtectedRoute from './components/ProtectedRoute';
 function App() {
   const [count, setCount] = useState(0)
   const [movieList, setmovieList] = useState([])
@@ -56,8 +57,8 @@ function App() {
             <Route path='/user-sign-up' element={<SignUp />} />
             <Route path='/user-sign-in' element={<SignIn />} />
             <Route path='/user-forgot-password' element={<ForgotPassword />} />
-            <Route path='/favorite-movie-list' element={<FavoriteMovieList />} />
-            <Route path='/watchlist-movie-list' element={<WatchListMovieList />} />
+            <Route path='/favorite-movie-list' element={<ProtectedRoute><FavoriteMovieList /></ProtectedRoute>} />
+            <Route path='/watchlist-movie-list' element={<ProtectedRoute><WatchListMovieList /></ProtectedRoute>} />
 
           </Routes>
           <Footer />

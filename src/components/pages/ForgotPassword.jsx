@@ -22,6 +22,11 @@ function ForgotPassword() {
             toast.info("Password reset email sent!")
         }
         catch (error) {
+            if (error.response?.status === 429) {
+                toast.error("API limit reached. Please wait.");
+              } else if (error.code === "auth/user-not-found") {
+                setError("email", { type: "manual", message: "No account found with this email." }) 
+              } 
             setError("email", { type: "manual", message: "Error sending password reset email" })
             console.error("Error sending password reset email:", error.message);
            

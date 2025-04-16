@@ -6,6 +6,7 @@ import Watchlist from '../Watchlist';
 import Favorites from '../Favorites';
 import IndiaSpotlightSkeleton from '../skeleton/IndiaSpotlightSkeleton';
 import axios from 'axios';
+import { toast } from "react-toastify";
 function IndiaSpotlight() {
     const { category } = useParams()
     const [moviesList, setmoviesList] = useState([])
@@ -785,6 +786,11 @@ function IndiaSpotlight() {
 
                 setloading(false)
             } catch (error) {
+              if (error.response?.status === 429) {
+                toast.error("API limit reached. Please wait.");
+              } else {
+                toast.error("Something went wrong.");
+              }
                 console.error(error);
             }
         }

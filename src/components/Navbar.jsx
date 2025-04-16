@@ -37,7 +37,12 @@ function Navbar() {
         navigate("/")
       }
     }).catch((error) => {
-      toast.error("Logout failed. " + error.message);
+      if (error.response?.status === 429) {
+        toast.error("API limit reached. Please wait.");
+      } else {
+        toast.error("Logout failed. " + error.message);
+      }
+
 
     });
 
@@ -82,12 +87,12 @@ function Navbar() {
         )}
 
         {/* User Profile */}
-        {user &&  <div className="flex items-center gap-2">
-    {user.photoURL && (
-      <img src={user.photoURL || "profile.jpg"} alt="Profile" className="w-8 h-8 rounded-full" />
-    )}
-    <span className="text-sm font-medium text-gray-600">{user.displayName || user.email}</span>
-  </div>}
+        {user && <div className="flex items-center gap-2">
+          {user.photoURL && (
+            <img src={user.photoURL || "profile.jpg"} alt="Profile" className="w-8 h-8 rounded-full" />
+          )}
+          <span className="text-sm font-medium text-gray-600">{user.displayName || user.email}</span>
+        </div>}
       </div>
       {/* Burger Menu */}
       <button className='lg:hidden flex cursor-pointer text-gray-500' onClick={() => { setisMenuOpen(!isMenuOpen) }}>{isMenuOpen ? <X /> : <Menu />}</button>
@@ -121,12 +126,12 @@ function Navbar() {
         )}
 
         {/* User Profile */}
-       {user &&  <div className="flex items-center gap-2">
-    {user.photoURL && (
-      <img src={user.photoURL || "profile.jpg"} alt="Profile" className="w-8 h-8 rounded-full" />
-    )}
-    <span className="text-sm font-medium text-gray-600">{user.displayName || user.email}</span>
-  </div>}
+        {user && <div className="flex items-center gap-2">
+          {user.photoURL && (
+            <img src={user.photoURL || "profile.jpg"} alt="Profile" className="w-8 h-8 rounded-full" />
+          )}
+          <span className="text-sm font-medium text-gray-600">{user.displayName || user.email}</span>
+        </div>}
       </div>
     </nav>
   )

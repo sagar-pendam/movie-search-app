@@ -50,6 +50,11 @@ function Home() {
                 setmovieList(response.data)
                 setloading(false)
             } catch (error) {
+                if (error.response?.status === 429) {
+                    toast.error("API limit reached. Please wait.");
+                  } else {
+                    toast.error("Something went wrong.");
+                  }
                 console.log(error);
             }
 

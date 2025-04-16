@@ -770,7 +770,11 @@ function MovieDetails() {
             
             setloading(false)
         } catch (error) {
-            toast.warning("Somthing went wrong!")
+          if (error.response?.status === 429) {
+            toast.error("API limit reached. Please wait.");
+          } else {
+            toast.error("Something went wrong.");
+          }
             
             console.error(error);
             navigate("/")

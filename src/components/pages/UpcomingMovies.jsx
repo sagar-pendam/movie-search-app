@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Bookmark } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Watchlist from '../Watchlist';
+import { toast } from "react-toastify";
 import UpcomingMoviesSkeleton from '../skeleton/UpcomingMoviesSkeleton';
 import axios from 'axios';
 function UpcomingMovies() {
@@ -33,6 +34,11 @@ function UpcomingMovies() {
             setmoviesList(response.data)
             setloading(false)
         } catch (error) {
+            if (error.response?.status === 429) {
+                toast.error("API limit reached. Please wait.");
+              } else {
+                toast.error("Something went wrong.");
+              }
             console.error(error);
         }
     }
@@ -56,6 +62,11 @@ function UpcomingMovies() {
 
                 setcountryCode(response.data)
             } catch (error) {
+                if (error.response?.status === 429) {
+                    toast.error("API limit reached. Please wait.");
+                  } else {
+                    toast.error("Something went wrong.");
+                  }
                 console.error(error);
             }
         }

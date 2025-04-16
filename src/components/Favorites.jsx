@@ -51,7 +51,11 @@ function Favorites({ movie, onRemove }) {
       }
     }
     catch (e) {
-
+      if (error.response?.status === 429) {
+        toast.error("API limit reached. Please wait.");
+      } else {
+        toast.error("Something went wrong.");
+      }
       console.error("Error adding document: ", e);
     }
     finally {
