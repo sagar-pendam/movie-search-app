@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react'
+import { useState, createContext,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -23,15 +23,26 @@ import Footer from './components/Footer';
 import "react-toastify/dist/ReactToastify.css";
 import ScrollToTop from './components/ScrollToTop';
 import ProtectedRoute from './components/ProtectedRoute';
+import { auth } from './firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 function App() {
   const [count, setCount] = useState(0)
   const [movieList, setmovieList] = useState([])
   const [user, setuser] = useState(null)
   const [favoriteList, setfavoriteList] = useState([])
-
+  const [authLoading, setAuthLoading] = useState(true);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setuser(currentUser);
+      setAuthLoading(false); 
+    });
+  
+    return () => unsubscribe();
+  }, []);
+  
   return (
     <>
-      <MovieContext.Provider value={{ movieList, setmovieList, user, setuser, favoriteList, setfavoriteList }}>
+      <MovieContext.Provider value={{authLoading, movieList, setmovieList, user, setuser, favoriteList, setfavoriteList }}>
 
         <BrowserRouter>
           <Navbar />
