@@ -374,7 +374,7 @@ function Movies() {
             <div className='flex items-center flex-col gap-4 relative z-10'>
 
                 {/* Back to Top Button */}
-                {showButton && <button onClick={scrollToTop} className='px-4 py-2 rounded-full border shadow-xl fixed top-8 flex items-center gap-2 cursor-pointer hover:text-white backdrop-blur-sm  transition-all duration-300 font-semibold'><ChevronUp /> Back to top</button>
+                {showButton && <button onClick={scrollToTop} className='px-4 py-2 rounded-full border shadow-xl fixed top-16 flex items-center gap-2 cursor-pointer hover:text-white backdrop-blur-sm  transition-all duration-300 font-semibold'><ChevronUp /> Back to top</button>
                 }
                 {/* Filter Menu */}
                 <div ref={closeRef} className={` transition-all duration-300 w-[80%] h-[80%] overflow-y-auto gap-6 px-5 py-10 shadow-lg ${isFilterOpen ? 'flex items-center  flex-col' : 'hidden'} shadow-red-200 border rounded-lg fixed top-[10%] bg-white mx-auto z-60`}>

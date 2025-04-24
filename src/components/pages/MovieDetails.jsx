@@ -17,7 +17,8 @@ function MovieDetails() {
     const navigate = useNavigate()
     const [movie, setmovie] = useState(null)
     const  { movieList, setmovieList, user, setuser, favoriteList, setfavoriteList } = useContext(MovieContext)
-     const [languages, setlanguages] = useState([
+     const [languages, setlanguages] = useState(
+      [
             {
               "name": "Afar",
               "iso_639_1": "aa"
@@ -808,15 +809,33 @@ function MovieDetails() {
         };
         return languages[code] || "Unknown Language";
     }
-    const findLanguage = (code)=>{
-        const language = languages.filter((lang)=> lang.iso_639_1 === code)
+    // const findLanguage = (code)=>{
+       
+    //     const language = languages.filter((lang)=> lang.iso_639_1 === code)
+    //     console.log("find language");
+        
+    //     console.log(language);
+    //     console.log(code);
+    //     console.log(languages);
+        
+    //     if(language.length > 0){
+    //         return language[0].name
+    //     }
+       
+    //     else{
+    //         return "Unknown"
+    //     }
         
         
-        
-        return language[0].name
-    }
+    // }
   
-
+    const findLanguage = (code) => {
+      if (!code || !languages || languages.length === 0) return "Unknown";
+      const match = languages.find(lang => lang.iso_639_1 === code);
+      return match ? match.name : "";
+    };
+    
+    
     return (
         <div className='flex flex-col '>
             {/* More Details About Movie */}
@@ -837,7 +856,14 @@ function MovieDetails() {
                     <div className='w-full h-[1px] bg-gray-400'></div>
                     <p>Released :{movie.startYear || "Unknown"}</p>
                     <div className='w-full h-[1px] bg-gray-400'></div>
-                    <p>Languages: {movie?.spokenLanguages?.length >0 ? (movie.spokenLanguages.map(code => findLanguage(code)).join(', ')):("Unknown")}</p>
+                    <p className="text-sm text-white mt-1">
+  <span className="font-semibold text-white">Languages:</span>{" "}
+  {movie?.spokenLanguages?.length > 0
+    ? movie.spokenLanguages.map(lang =>  !findLanguage(lang.iso_639_1)).join(', ') ? "Unknown" : findLanguage(lang.iso_639_1)
+    : "Unknown"}
+</p>
+
+
 
                     <div className='w-full h-[1px] bg-gray-400'></div>
                     <p className=''>Imdb Rating   <span className='flex gap-2'><Star className='fill-[#ffea00] text-[#ffea00]' /> {movie.averageRating || "N/A"}/10</span></p>

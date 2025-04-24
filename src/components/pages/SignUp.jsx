@@ -61,7 +61,7 @@ const SignUp = () => {
   }, [errors]);
   
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center px-4 justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
         {loading && <Loader/> }
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Sign Up</h2>

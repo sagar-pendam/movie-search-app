@@ -31,7 +31,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition"
           >
-            <img src='./facebook.svg'/>
+            <img src='/facebook.svg' alt='facebook' />
           </a>
           <a
             
@@ -39,7 +39,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition"
           >
-           <img src='./instagram.svg'/>
+           <img src='/instagram.svg' alt='instagram'/>
           </a>
         </div>
       </div>

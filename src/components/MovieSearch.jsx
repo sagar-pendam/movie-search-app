@@ -38,8 +38,13 @@ function MovieSearch() {
             if(movieName.trim().length > 0){
              setisSearching(true)
               const response = await axios.request(options);
+              console.log("response.data");
+              
+              console.log(response.data)
+             
+              
              setmovieList(response.data)
-             if (!response.data.Search || response.data.Search.length === 0) {
+             if ( !response.data || response.data.length === 0) {
                  toast.info("No movies found matching your search.");
                  setmovieName("")
                  setmovieList([])

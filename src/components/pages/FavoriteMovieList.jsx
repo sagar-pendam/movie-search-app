@@ -50,7 +50,7 @@ function FavoriteMovieList() {
          <ul className='flex flex-col items-center backdrop-blur-sm bg-slate-900 shadow-slate-900   text-white shadow-lg p-5 border rounded-lg justify-center gap-4 w-full'>
            {favMovieList?.map((movie, index) => (
              <li key={index} className='w-full'>
-               <div onClick={(e) => handleCardClick(movie.id, e)}  className='movie-cart cursor-pointer custom-shadow mt-4 px-4 gap-4 w-full py-2 flex items-center justify-around border rounded-lg'>
+               <div onClick={(e) => handleCardClick(movie.id, e)}  className='movie-cart cursor-pointer custom-shadow mt-4 px-4 gap-4 w-full py-2 flex items-center flex-wrap justify-around border rounded-lg'>
                  <img className='w-16 h-16 rounded-md' src={movie.primaryImage} alt={movie.originalTitle} />
                  <div className='flex gap-1 flex-col w-[80%]'>
                    <h1 className='font-semibold'>{movie.originalTitle || "Unknown title"}</h1>

@@ -49,7 +49,7 @@ function Navbar() {
   }
 
   return (
-    <nav className='flex  transition-all duration-500 h-auto flex-wrap gap-4 justify-between px-4 items-center py-2 shadow-sm backdrop-blur-xl shadow-[#3dffa5] bg-[#3dffa5]'>
+    <nav className='flex sticky top-0 z-50  transition-all duration-500 h-auto flex-wrap gap-4 justify-between px-4 items-center py-2 shadow-sm backdrop-blur-xl shadow-[#3dffa5] bg-[#3dffa5]'>
 
       {/* logo */}
 

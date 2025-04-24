@@ -82,7 +82,7 @@ function UpcomingMovies() {
     }, [selectedCountry])
     return (
         <div className='flex flex-col p-10 gap-4'>
-            <div className='flex justify-evenly items-center flex-wrap gap-4  font-bold'>   
+            <div className='flex sm:justify-evenly justify-start items-center flex-wrap gap-4  font-bold'>   
                  <h1 className='text-2xl text-blue-400'>Upcoming Releases </h1>
                 {/* Select Country Option */}
                 <select
@@ -93,7 +93,7 @@ function UpcomingMovies() {
                         const selected = countryCode.find(c => c.iso_3166_1 === e.target.value);
                         setselectedCountry(selected);
                     }}
-                    className={`border border-slate-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${loading ? "opacity-50 cursor-not-allowed" : ""
+                    className={`border w-[50%] border-slate-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${loading ? "opacity-50 cursor-not-allowed" : ""
                         }`}
                 >
                     {countryCode.map((c, index) => (
@@ -116,7 +116,7 @@ function UpcomingMovies() {
                                     <div className='flex flex-col gap-4 w-full justify-between'>
                                         {movie?.titles?.length > 0 ?
                                             movie.titles?.map((movie) => {
-                                                return <div key={movie.id} className='flex bg-white/30 backdrop-blur-lg flex-wrap w-full justify-between  border-2 gap-4 px-4 py-2 rounded-lg'>
+                                                return <div key={movie.id} className='flex bg-white/30 backdrop-blur-lg flex-wrap w-full sm:justify-between justify-center border-2 gap-4 px-4 py-2 rounded-lg'>
                                                     {/* left side content */}
                                                     <div className='flex   gap-4 px-4 py-2 justify-center sm:flex-row flex-col sm:items-start items-center'>
                                                         <img className='md:w-16 md:h-16 rounded-md h-28 w-28' src={movie.primaryImage} alt={movie.originalTitle} />
