@@ -764,11 +764,9 @@ function MovieDetails() {
     const fetchMovieData = async () => {
         try {
             setloading(true)
-            const response = await axios.request(options);
-           
-            
-            setmovie(response.data)
-            
+            const response = await axios.request(options);  
+            console.log(response.data)       
+            setmovie(response.data)           
             setloading(false)
         } catch (error) {
           if (error.response?.status === 429) {
@@ -792,48 +790,20 @@ function MovieDetails() {
     }
 
    
-    
-    function getLanguageName(code) {
-        const languages = {
-            "en": "English",
-            "es": "Spanish",
-            "fr": "French",
-            "de": "German",
-            "zh": "Chinese",
-            "hi": "Hindi",
-            "ar": "Arabic",
-            "ru": "Russian",
-            "ja": "Japanese",
-            "pt": "Portuguese"
-            // Add more languages as needed
-        };
-        return languages[code] || "Unknown Language";
-    }
-    // const findLanguage = (code)=>{
-       
-    //     const language = languages.filter((lang)=> lang.iso_639_1 === code)
-    //     console.log("find language");
-        
-    //     console.log(language);
-    //     console.log(code);
-    //     console.log(languages);
-        
-    //     if(language.length > 0){
-    //         return language[0].name
-    //     }
-       
-    //     else{
-    //         return "Unknown"
-    //     }
-        
-        
-    // }
+   
   
     const findLanguage = (code) => {
-      if (!code || !languages || languages.length === 0) return "Unknown";
+      console.log("find language");
+      if (!code || !languages || languages.length === 0) return false;
       const match = languages.find(lang => lang.iso_639_1 === code);
-      return match ? match.name : "";
+     
+      console.log(match);
+      console.log(code);
+      
+      
+      return match ? match.name : "Unknown";
     };
+    
     
     
     return (
@@ -854,12 +824,12 @@ function MovieDetails() {
                 <div className='right-side w-96 flex px-4 items-start self-start py-12 flex-col gap-3'>
                     <p>{movie.description || "Not found"}</p>
                     <div className='w-full h-[1px] bg-gray-400'></div>
-                    <p>Released :{movie.startYear || "Unknown"}</p>
+                    <p className='flex flex-wrap gap-2'><span>Released </span>: {movie.startYear || "Unknown"}</p>
                     <div className='w-full h-[1px] bg-gray-400'></div>
-                    <p className="text-sm text-white mt-1">
-  <span className="font-semibold text-white">Languages:</span>{" "}
+                    <p className="text-sm text-white mt-1 flex flex-wrap gap-2">
+  <span className="font-semibold text-white">Languages : </span>{" "}
   {movie?.spokenLanguages?.length > 0
-    ? movie.spokenLanguages.map(lang =>  !findLanguage(lang.iso_639_1)).join(', ') ? "Unknown" : findLanguage(lang.iso_639_1)
+    ? movie.spokenLanguages.map((lang,index) => findLanguage(lang)).join(", ")
     : "Unknown"}
 </p>
 

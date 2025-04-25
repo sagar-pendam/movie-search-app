@@ -492,7 +492,7 @@ function Movies() {
                                         return <li key={genre} className='text-blue-400 font-bold flex gap-2 items-center'>{genre} {(index != movie?.genres.length - 1) && <div className='h-5 w-[1px] bg-gray-400 rounded-full'></div>}</li>
                                     })) : <li className='text-blue-400 font-bold flex gap-2 items-center'>No geners listed</li>}
                                 </ul>
-                                <Link to={`/movie/:${movie.id}`} className='underline text-gray-100 cursor-pointer hover:text-blue-400'>Details</Link>
+                                <Link to={`/movie/${movie.id}`} className='underline text-gray-100 cursor-pointer hover:text-blue-400'>Details</Link>
 
                                 <div className='fav-watch-list flex items-center justify-center gap-4 w-full'>
                                     <Favorites movie={movie} />
