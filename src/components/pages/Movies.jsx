@@ -64,6 +64,7 @@ function Movies() {
 
     const [isFiltered, setisFiltered] = useState(false)//To check User filtered list or not
     const [filteredMovies, setfilteredMovies] = useState([])
+    const [movieDataFetchedSuccessfully, setmovieDataFetchedSuccessfully] = useState(true)
     const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
     const options = {
         method: 'GET',
@@ -95,7 +96,7 @@ function Movies() {
 
 
     const handleYearChange = (e) => {
-        ;
+       
 
         const id = e.target.id;
         const regex = /^\d+$/;
@@ -354,9 +355,11 @@ function Movies() {
                     setmoviesList(response.data)
                     setloading(false)
                     setresults(response.data.length)
+                    
                 }
 
             } catch (error) {
+                setmovieDataFetchedSuccessfully(false)
                 if (error.response?.status === 429) {
                     toast.error("API limit reached. Please wait.");
                   } else {
@@ -476,7 +479,8 @@ function Movies() {
                 {/* Listing Movies */}
                 <div className='flex flex-wrap gap-4 min-h-screen w-[80%] bg-[#939393] mx-auto justify-around items-center py-8 border rounded-md'>
 
-                    {loading ? <MoviesSkeleton /> : (isFiltered ? filteredMovies?.map((movie) => {
+                    {loading ? <MoviesSkeleton /> : 
+                    (isFiltered ? filteredMovies?.map((movie) => {
 
                         return <div key={movie.id} className='movie-cart backdrop:blur-3xl flex text-white justify-center items-center  bg-[#515151] border px-4 py-4 gap-8  md:max-w-[40%] sm:flex-col sm:w-[60%] w-[90%] h-[520px] overflow-y-auto sm:flex- flex-col'>
                             <img className='w-40 h-44' src={movie.primaryImage} alt={movie.originalTitle} />
@@ -501,8 +505,8 @@ function Movies() {
                             </div>
                         </div>
                     }) :
-
-                        (moviesList && moviesList.length > 0 ? (
+                       ( movieDataFetchedSuccessfully ? 
+                        (moviesList && moviesList.length > 0 && (
                             moviesList?.map((movie) => {
 
                                 return <div key={movie.id} className='movie-cart backdrop:blur-3xl flex text-white justify-center items-center  bg-[#515151] border px-4 py-4 gap-8  md:max-w-[40%] sm:flex-col sm:w-[60%] w-[90%] h-[520px] overflow-y-auto sm:flex- flex-col'>
@@ -532,7 +536,9 @@ function Movies() {
                                     </div>
                                 </div>
                             })
-                        ) : <div className='flex h-screen justify-center items-center w-full'> Somthing went wrong</div>)
+                        ) )
+                        : <div className="w-full text-center text-gray-400 text-lg py-10 animate-pulse">
+                            Something went wrong!</div>)
                     )}
 
                 </div>

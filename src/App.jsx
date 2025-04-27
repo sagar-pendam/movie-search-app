@@ -31,6 +31,8 @@ function App() {
   const [user, setuser] = useState(null)
   const [favoriteList, setfavoriteList] = useState([])
   const [authLoading, setAuthLoading] = useState(true);
+  const [searchedResultFound, setsearchedResultFound] = useState(false)
+   const [dataFetchedFirstTime, setdataFetchedFirstTime] = useState(true)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setuser(currentUser);
@@ -42,7 +44,7 @@ function App() {
   
   return (
     <>
-      <MovieContext.Provider value={{authLoading, movieList, setmovieList, user, setuser, favoriteList, setfavoriteList }}>
+      <MovieContext.Provider value={{dataFetchedFirstTime, setdataFetchedFirstTime, searchedResultFound, setsearchedResultFound, authLoading, movieList, setmovieList, user, setuser, favoriteList, setfavoriteList }}>
 
         <BrowserRouter>
           <Navbar />
@@ -51,7 +53,7 @@ function App() {
             hideProgressBar={false}
             newestOnTop
             closeOnClick
-            rtl={false}
+            rtl={true}
             pauseOnFocusLoss
             draggable
             pauseOnHover

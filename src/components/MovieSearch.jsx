@@ -10,7 +10,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 
 function MovieSearch() {
-    const { movieList, setmovieList } = useContext(MovieContext)
+    const {dataFetchedFirstTime, setdataFetchedFirstTime ,searchedResultFound, setsearchedResultFound, movieList, setmovieList } = useContext(MovieContext)
     const [movieName, setmovieName] = useState('')
     const [loading, setloading] = useState(true)
     const navigate = useNavigate()
@@ -39,15 +39,16 @@ function MovieSearch() {
              setisSearching(true)
               const response = await axios.request(options);
               console.log("response.data");
-              
+               setmovieList(response.data) 
               console.log(response.data)
-             
-              
+             setdataFetchedFirstTime(false)
+              // alert("response.data")
              setmovieList(response.data)
-             if ( !response.data || response.data.length === 0) {
+             if ( response.data.length === 0) {
                  toast.info("No movies found matching your search.");
                  setmovieName("")
                  setmovieList([])
+                 
                  
                }
                setmovieName("")

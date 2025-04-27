@@ -12,10 +12,11 @@ import HomeSkeleton from '../skeleton/HomeSkeleton';
 import TypedText from '../TypedText';
 import axios from 'axios';
 function Home() {
-    const { movieList, setmovieList, user, setuser } = useContext(MovieContext)
+    const {dataFetchedFirstTime, setdataFetchedFirstTime,searchedResultFound, setsearchedResultFound, movieList, setmovieList, user, setuser } = useContext(MovieContext)
     const [movieName, setmovieName] = useState('')
     const [loading, setloading] = useState(true)
     const location = useLocation();
+   
     const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
 
     const options = {
@@ -48,8 +49,10 @@ function Home() {
                 setloading(true)
                 const response = await axios.request(options);
                 setmovieList(response.data)
-                setloading(false)
+                
             } catch (error) {
+                
+                
                 if (error.response?.status === 429) {
                     toast.error("API limit reached. Please wait.");
                   } else {
@@ -57,9 +60,16 @@ function Home() {
                   }
                 console.log(error);
             }
+            finally{
+                setloading(false)
+            }
 
         }
-        handleSearch()
+        if(movieList.length === 0  && dataFetchedFirstTime){
+           
+            handleSearch()
+        }  
+        setloading(false) 
  }, [])
 
 
