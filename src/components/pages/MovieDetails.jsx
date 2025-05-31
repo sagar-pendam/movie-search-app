@@ -753,21 +753,22 @@ function MovieDetails() {
             }
           ])
           const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
+  
     const options = {
-        method: 'GET',
-        url: `https://imdb236.p.rapidapi.com/imdb/${id}`,
-        headers: {
-            'x-rapidapi-key': apiKey,
-            'x-rapidapi-host': 'imdb236.p.rapidapi.com'
-        }
+      method: 'GET',
+      url: `https://imdb236.p.rapidapi.com/api/imdb/${id}`,
+      headers: {
+        'x-rapidapi-key': apiKey,
+        'x-rapidapi-host': 'imdb236.p.rapidapi.com'
+      }
     };
     const fetchMovieData = async () => {
         try {
             setloading(true)
-            const response = await axios.request(options);  
-            console.log(response.data)       
+            const response = await axios.request(options);                  
             setmovie(response.data)           
             setloading(false)
+            
         } catch (error) {
           if (error.response?.status === 429) {
             toast.error("API limit reached. Please wait.");
@@ -780,6 +781,7 @@ function MovieDetails() {
         }
     }
 
+    
     useEffect(() => {
            fetchMovieData()
     }, [id])

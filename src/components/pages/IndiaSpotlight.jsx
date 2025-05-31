@@ -747,14 +747,15 @@ function IndiaSpotlight() {
         }
       ])
       const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
-    const options = {
+      const options = {
         method: 'GET',
         url: `https://imdb236.p.rapidapi.com/imdb/india/${category}`,
         headers: {
-            'x-rapidapi-key': apiKey,
-            'x-rapidapi-host': 'imdb236.p.rapidapi.com'
+          'x-rapidapi-key': apiKey,
+          'x-rapidapi-host': 'imdb236.p.rapidapi.com'
         }
-    };
+      };
+      
     useEffect(() => {
         if (category === "top-rated-tamil-movies") {
             settitle("Top Rated Tamil Movies")

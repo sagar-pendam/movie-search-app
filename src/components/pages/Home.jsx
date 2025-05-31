@@ -12,27 +12,27 @@ import HomeSkeleton from '../skeleton/HomeSkeleton';
 import TypedText from '../TypedText';
 import axios from 'axios';
 function Home() {
-    const {dataFetchedFirstTime, setdataFetchedFirstTime,searchedResultFound, setsearchedResultFound, movieList, setmovieList, user, setuser } = useContext(MovieContext)
+    const { dataFetchedFirstTime, setdataFetchedFirstTime, searchedResultFound, setsearchedResultFound, movieList, setmovieList, user, setuser } = useContext(MovieContext)
     const [movieName, setmovieName] = useState('')
     const [loading, setloading] = useState(true)
     const location = useLocation();
-   
+
     const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
 
+    
     const options = {
         method: 'GET',
-        url: 'https://imdb236.p.rapidapi.com/imdb/autocomplete',
-        params: { query: 'avengers' },
+        url: 'https://imdb236.p.rapidapi.com/api/imdb/autocomplete',
+        params: {query: 'break'},
         headers: {
-            'x-rapidapi-key': apiKey,
-            'x-rapidapi-host': 'imdb236.p.rapidapi.com'
+          'x-rapidapi-key': apiKey,
+          'x-rapidapi-host': 'imdb236.p.rapidapi.com'
         }
-    };
+      };
 
-
-   
-   //To handle user logged in or not
+    //To handle user logged in or not
     useEffect(() => {
+       
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
                 setuser(currentUser)
@@ -41,43 +41,44 @@ function Home() {
             else {
                 setuser(null)
             }
-            
+
         })
 
         const handleSearch = async () => {
             try {
-                setloading(true)
+               setloading(true)
                 const response = await axios.request(options);
-                setmovieList(response.data)
+                setmovieList(response.data)               
                 
             } catch (error) {
-                
-                
+
+
                 if (error.response?.status === 429) {
                     toast.error("API limit reached. Please wait.");
-                  } else {
+                } else {
                     toast.error("Something went wrong.");
-                  }
+                }
                 console.log(error);
             }
-            finally{
+            finally {
                 setloading(false)
             }
 
         }
-        if(movieList.length === 0  && dataFetchedFirstTime){
-           
+        if (movieList.length === 0 && dataFetchedFirstTime) {
+
             handleSearch()
-        }  
-        setloading(false) 
- }, [])
+        }
+        setloading(false)
+      
+    }, [])
 
 
 
 
     return (
         <div className='bg-[#000B31] w-full'>
- <div className='flex gap-5 w-full items-center justify-center flex-col px-4 py-32'>
+            <div className='flex gap-5 w-full items-center justify-center flex-col px-4 py-32'>
                 < TypedText />
                 {/* Display Movie List */}
                 <div className='w-full flex flex-wrap gap-4 items-center justify-around '>
@@ -108,7 +109,7 @@ function Home() {
                         ))
                     ) : (
                         <div className="w-full text-center text-gray-400 text-lg py-10 animate-pulse">
-                             No movies found. Try a different search!
+                            No movies found. Try a different search!
                         </div>
 
                     )}

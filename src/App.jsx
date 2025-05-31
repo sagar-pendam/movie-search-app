@@ -26,7 +26,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 function App() {
-  const [count, setCount] = useState(0)
+  
   const [movieList, setmovieList] = useState([])
   const [user, setuser] = useState(null)
   const [favoriteList, setfavoriteList] = useState([])

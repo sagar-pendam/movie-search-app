@@ -18,17 +18,18 @@ function MovieSearch() {
     const [isSearching, setisSearching] = useState(false)
     const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
     const options = {
-        method: 'GET',
-        url: 'https://imdb236.p.rapidapi.com/imdb/autocomplete',
-        params: {query: movieName},
-        headers: {
-          'x-rapidapi-key': apiKey,
-          'x-rapidapi-host': 'imdb236.p.rapidapi.com'
-        }
-      };
+      method: 'GET',
+      url: 'https://imdb236.p.rapidapi.com/api/imdb/autocomplete', // ✅ Corrected endpoint
+      params: { query: movieName },
+      headers: {
+        'x-rapidapi-key': apiKey,
+        'x-rapidapi-host': 'imdb236.p.rapidapi.com',
+      },
+    };
+    
 
 
-
+  
   
     
     

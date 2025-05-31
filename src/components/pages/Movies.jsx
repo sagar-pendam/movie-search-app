@@ -66,14 +66,23 @@ function Movies() {
     const [filteredMovies, setfilteredMovies] = useState([])
     const [movieDataFetchedSuccessfully, setmovieDataFetchedSuccessfully] = useState(true)
     const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
+    // const options = {
+    //     method: 'GET',
+    //     url: `https://imdb236.p.rapidapi.com/imdb/${category}`,
+    //     headers: {
+    //         'x-rapidapi-key': apiKey,
+    //         'x-rapidapi-host': 'imdb236.p.rapidapi.com'
+    //     }
+    // };
     const options = {
         method: 'GET',
-        url: `https://imdb236.p.rapidapi.com/imdb/${category}`,
+        url: `https://imdb236.p.rapidapi.com/api/imdb/${category}`,
         headers: {
-            'x-rapidapi-key': apiKey,
-            'x-rapidapi-host': 'imdb236.p.rapidapi.com'
+          'x-rapidapi-key': apiKey,
+          'x-rapidapi-host': 'imdb236.p.rapidapi.com'
         }
-    };
+      };
+      
 
     const handleFilterOpenAndCloseBtn = (param) => {
         if (closeRef) {
@@ -355,6 +364,8 @@ function Movies() {
                     setmoviesList(response.data)
                     setloading(false)
                     setresults(response.data.length)
+                    console.log(category);
+                    
                     
                 }
 
